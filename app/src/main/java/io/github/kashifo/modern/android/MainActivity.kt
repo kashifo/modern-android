@@ -1,7 +1,6 @@
 package io.github.kashifo.modern.android
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -10,14 +9,14 @@ import io.github.kashifo.modern.android.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel: MovieViewModel
-    private lateinit var movieAdapter: MovieAdapter
+    private lateinit var viewModel: BookViewModel
+    private lateinit var movieAdapter: BookAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         prepareRecyclerView()
-        viewModel = ViewModelProvider(this)[MovieViewModel::class.java]
+        viewModel = ViewModelProvider(this)[BookViewModel::class.java]
         viewModel.getPopularMovies()
         viewModel.observeMovieLiveData().observe(this, Observer { movieList ->
             movieAdapter.setMovieList(movieList)
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun prepareRecyclerView() {
-        movieAdapter = MovieAdapter()
+        movieAdapter = BookAdapter()
         binding.rvMovies.apply {
             layoutManager = GridLayoutManager(applicationContext, 2)
             adapter = movieAdapter

@@ -12,7 +12,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class MovieViewModel : ViewModel() {
+class BookViewModel : ViewModel() {
     private var movieLiveData = MutableLiveData<List<GBook>>()
     fun getPopularMovies() {
         ApiClient.apiService.searchBooks("steve", 0, 10).enqueue(object  : Callback<BookSearchResponse> {

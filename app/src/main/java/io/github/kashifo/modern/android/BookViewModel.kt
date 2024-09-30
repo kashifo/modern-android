@@ -13,7 +13,9 @@ import retrofit2.Response
 
 
 class BookViewModel : ViewModel() {
+
     private var movieLiveData = MutableLiveData<List<GBook>>()
+
     fun getPopularMovies() {
         ApiClient.apiService.searchBooks("steve", 0, 10).enqueue(object  : Callback<BookSearchResponse> {
             override fun onResponse(call: Call<BookSearchResponse>, response: Response<BookSearchResponse>) {
@@ -32,6 +34,7 @@ class BookViewModel : ViewModel() {
             }
         })
     }
+
     fun observeMovieLiveData() : LiveData<List<GBook>> {
         return movieLiveData
     }
